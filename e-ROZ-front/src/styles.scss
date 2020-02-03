@@ -1,0 +1,125 @@
+/* You can add global styles to this file, and also import other style files */
+  /* Application-wide Styles */
+h1 {
+  color: rgb(20, 144, 216);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 100;
+  font-size: 2em;
+  text-align: center;
+  text-transform: capitalize;
+  background-color: rgba(0, 0, 0, 0.25);
+  border: 1px solid #1490d8;
+  padding: 22px 0;
+  border-radius: 6px;
+  max-width: 1240px;
+  margin: 5px auto 20px;
+  letter-spacing: 8px;
+}
+h2, h3 {
+  color: rgb(206, 89, 89);
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: lighter;
+  text-align: left;
+  font-size: 18px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+.subtitle{
+  color: #ce5959;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: lighter;
+  text-align: left;
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+body {
+  background-color: rgba(0, 0, 0, 0.55);
+  background-image: url(./assets/img/bg-eroz-650px.svg);
+  background-blend-mode: multiply;
+  background-repeat: repeat;
+  //background-size: contain;
+  background-size: 1000px;
+}
+
+input[type="text"], button {
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.grab {
+  cursor: grab!important;
+}
+  /* everywhere else */
+* {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+.mat-card{
+    background-color: #f7f7f7;
+    color: white;
+  }
+
+.mat-form-field{
+    width: 100%;
+  }
+
+.custom-button{
+    width: 100%;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    padding: 0.5em!important;
+    background-color: rgba(20, 143, 215, $alpha: 1);
+    color: #d0e1ea!important;
+    transition: all 550ms ease-in-out;
+  }
+.container {
+    display: grid;
+    grid-template-columns:2fr 1fr;
+    max-width: 1260px;
+    margin: 0 auto;
+    gap: 2em;
+  }
+
+.container_company{
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 700px;
+  margin: 50px auto;
+
+}  
+.creation_corp {
+    background-color: rgba(0, 0, 0, 0.85);
+    border: 1px solid rgb(20,144,216);
+  }
+  // custom button
+
+  //disabled style
+
+.mat-stroked-button.mat-primary[disabled] {
+    background-color: rgba(93, 33, 20, 0.5);
+    cursor: not-allowed;
+    text-decoration-line: line-through;
+    transition: all 450ms ease;
+  }
+
+  // padding and margin 
+.ml20 {
+  margin-left: 20px;
+}
+
+
+
+.eroz-blue-color{
+  color: rgb(20, 144, 216) ;
+}
+
+.eroz-blue-bg-color{
+  color: rgb(20, 144, 216);
+}
+
+.eroz-red-color {
+  color: rgb(206, 89, 89);
+}
+
+.txt-center {
+  text-align: center;
+}

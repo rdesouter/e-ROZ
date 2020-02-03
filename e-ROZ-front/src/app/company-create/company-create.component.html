@@ -1,0 +1,35 @@
+<div class="container_company">
+    <mat-card class="creation_corp">
+        <mat-card-content>
+            <section>
+                <h2 style="text-transform: uppercase; text-align: center;">First you need to create a company</h2>
+                <p style="text-align: center;">Fill in the form below</p>
+            </section>
+            <section>
+                <form [formGroup]="form" (submit)="submitForm()">
+                    <section>
+                        <mat-form-field>
+                            <input matInput placeholder="name" formControlName="name">
+                            <mat-error></mat-error>
+                        </mat-form-field>
+                    </section>
+                    <!-- <section>
+                        <mat-form-field>
+                            <input matInput placeholder="assets" formControlName="assets">
+                            <mat-error></mat-error>
+                        </mat-form-field>
+                    </section> -->
+                    <section>
+                        <mat-form-field>
+                            <input matInput placeholder="town" formControlName="town">
+                            <mat-error></mat-error>
+                        </mat-form-field>
+                    </section>
+                    <section>
+                        <button mat-stroked-button color="primary" class="custom-button">Submit</button>
+                    </section>
+                </form>
+            </section>
+        </mat-card-content>
+    </mat-card>
+</div>

@@ -1,0 +1,102 @@
+<div class="list"
+id = "list_of_heroes"
+cdkDropList
+#heroesList = "cdkDropList"
+[cdkDropListData]= "heroes"
+[cdkDropListConnectedTo]="LIST_IDS"
+(cdkDropListDropped)="onDrop($event)">
+    <ul class="heroes">
+        <h2>List of heroes</h2>
+        <li *ngFor="let hero of heroes" cdkDrag class="grab" [attr.id]="'hero' + hero.id">
+            <span class="badge">
+                <span style="font-size: 11px; font-family: 'courier';">
+                    STR <br>
+                </span>
+                {{hero.strength}}
+            </span> 
+            <span style="position: relative; top: -5px;">{{hero.name | uppercase }}
+                <span class="cost">cost:{{hero.cost | currency:'EUR':'symbol-narrow':'1.0-0'}}</span> 
+            </span>
+            <span [ngStyle]="{'background': getBgColor(hero.status)}" class="badge_status">{{hero.status}}</span>
+        </li>
+    </ul> 
+</div>
+
+<mat-accordion >
+    <mat-expansion-panel [expanded]="false">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Want to add new hero ?
+            </mat-panel-title>
+            <mat-panel-description>
+                click here
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <section >
+            <form [formGroup]="newHeroForm" (ngSubmit)="sendNewHero()">
+                <mat-form-field>
+                    <mat-label> Name</mat-label>
+                    <input type="text" placeholder="enter the name (characters between 3->15)" formControlName="name" matInput required>
+                </mat-form-field>
+                <div *ngIf="f.name.errors">
+                    <mat-error *ngIf="f.name.errors.maxlength">The maximum length of characters is 
+                        {{f.name.errors.maxlength.requiredLength}} <br/>actual number: 
+                        {{f.name.errors.maxlength.actualLength}} 
+                    </mat-error>
+                    <mat-error *ngIf="f.name.errors.minlength">The min length of characters is 
+                        {{f.name.errors.minlength.requiredLength}} <br/>actual number: 
+                        {{f.name.errors.minlength.actualLength}} 
+                    </mat-error>
+                    <!-- TODO show this message only on send or when user click before type -->
+                    <!-- <mat-error *ngIf="f.name.errors.required">Field is required</mat-error> -->
+                </div>
+                <!-- <button (click)="test()">test button</button> -->
+
+                <mat-form-field>
+                    <mat-label> Ability</mat-label>
+                    <input placeholder="describe the abilities (characters between 5->100)" formControlName="ability" matInput required>
+                </mat-form-field>
+                <div *ngIf="f.ability.errors">
+                    <mat-error *ngIf="f.ability.errors.maxlength">The min length of characters is 
+                        {{f.ability.errors.minlength.requiredLength}} <br>actual number: 
+                        {{f.ability.errors.minlength.actualLength}} 
+                    </mat-error>
+                </div>
+                <div *ngIf="f.ability.errors">
+                    <mat-error *ngIf="f.ability.errors.maxlength">The maximum length of characters is 
+                        {{f.ability.errors.maxlength.requiredLength}} <br>actual number: 
+                        {{f.ability.errors.maxlength.actualLength}} 
+                    </mat-error>
+                </div>
+
+                <mat-form-field>
+                    <mat-label> Description</mat-label>
+                    <textarea placeholder="a short description (characters between 50->500)" formControlName="description" matInput required rows="6"></textarea>
+                </mat-form-field>
+
+                <div *ngIf="f.description.errors">
+                    <mat-error *ngIf="f.description.errors.minlength">The minimum length of characters is 
+                        {{f.description.errors.minlength.requiredLength}} <br>actual number: 
+                        {{f.description.errors.minlength.actualLength}} 
+                    </mat-error>
+                </div>
+                <div *ngIf="f.description.errors">
+                    <mat-error *ngIf="f.description.errors.maxlength">The maximum length of characters is 
+                        {{f.description.errors.maxlength.requiredLength}} <br>actual number: 
+                        {{f.description.errors.maxlength.actualLength}} 
+                    </mat-error>
+                </div>
+
+                <!-- TODO when send redirect to home of say something like hero when well sended -->
+                <section>
+                    <button mat-stroked-button color="primary" class="custom-button" [disabled]="!newHeroForm.valid">send NEW HERO</button>
+                </section>
+            </form>
+            <mat-error>hero form valid ? :{{newHeroForm.valid}}</mat-error>
+           
+        </section>
+
+    </mat-expansion-panel>
+</mat-accordion>
+

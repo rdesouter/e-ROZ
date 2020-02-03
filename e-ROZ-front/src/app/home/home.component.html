@@ -1,0 +1,14 @@
+<app-company *ngIf="companyDoesntExist; else companyExistBlock" (companyCreated)="onCompanyCreated()"></app-company>
+
+<ng-template #companyExistBlock>
+        <h1>
+                <span style="font-size: 16px; letter-spacing: 2px;">Company name:</span>
+                {{company.name}}
+                <span style="font-size: 16px; letter-spacing: 2px;">has</span>
+                {{company.assets | currency:'EUR':'symbol-narrow':'1.0-0'}}
+        </h1>
+        <div class="container">
+                <mission class="mission" [LIST_IDS]="LIST_IDS" id="style-2"></mission>
+                <heroes class="heroes" [LIST_IDS]="LIST_IDS"></heroes>
+        </div>
+</ng-template>

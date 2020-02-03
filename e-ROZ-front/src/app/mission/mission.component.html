@@ -1,0 +1,101 @@
+<h2 style="margin: 15px 0 0 25px;">List of missions</h2>
+<p class="subtitle" style="margin: 0 0 0 25px;">_from oldest to most recent_</p>
+
+<div 
+    id=list_of_missions 
+    cdkDropList [cdkDropListData]="missions" 
+    [cdkDropListConnectedTo]="" 
+    (cdkDropListDropped)="onDrop($event)">
+    <div #missionId *ngFor="let mission of missions ; index as i" [attr.data-mission-id]="mission.id"
+        [attr.data-mission]="i+1" cdkDrag>
+        <mat-card class="mat_card grab">
+            <!-- <h1>{{i + 1}}</h1> -->
+            <mat-card-title class="mission_title">{{mission.title}}
+                <span style="font-size: 18px; font-family: 'Courier New', Courier;">
+                    [Awards {{mission.award | currency:'EUR':'symbol-narrow':'1.0-0'}}]
+                </span>
+            </mat-card-title>
+            <mat-card-content>below the characteristics of the mission, once started the counter will display 
+                the time remaining before you can check whether it was a success or a failure.
+                the success of the mission depends on its difficulty as well as on the sum of heroes strength sent.
+            </mat-card-content>
+            <mat-card-content>BE CARREFUL you need to pay your hero(es) each time you send them, even if it's failled</mat-card-content>
+
+            <hr>
+            <mat-card-subtitle>difficulty: {{mission.difficulty}}</mat-card-subtitle>
+            <mat-card-subtitle>people to save: {{mission.safe_people}}</mat-card-subtitle>
+            <mat-card-subtitle>XP: {{mission.experience}}Pts</mat-card-subtitle>
+            <mat-card-subtitle>received on {{mission.date | erozDate : ''}}</mat-card-subtitle>
+            <mat-card-subtitle>finished on {{mission.accomplished | erozDate : ''}}
+            </mat-card-subtitle>
+            <!-- <button (click)="setIndex(i, missionId)" style="margin-right: 20px;"> load the mission</button> -->
+
+            <!-- TODO add a linear loader to show countdown and launch button after finish loading -->
+            <!-- <mat-progress-bar mode="determinate" [value]="progressValue"></mat-progress-bar> -->
+            <!-- <button mat-raised-button (click)="startTimer(5)">Start timer ({{curSec}})</button> -->
+
+            <!-- <button (click)="test(missionId)">how many heroes</button> -->
+            <div *ngIf="!mission.isLaunch">
+                <button mat-raised-button color="secondary" (click)="launch(missionId)">LAUNCH NOW !</button>
+                <h2 style="font-size: 12px; letter-spacing: 0;">mission not started, so countdown are hide</h2>
+            </div>
+            <div *ngIf="mission.isLaunch && mission.isDone && !mission.isAccomplished && !mission.isTry">
+                <button mat-raised-button color="secondary" (click)="succeed(missionId)">COLLECT AND CHECK</button>
+                <h2 style="font-size: 12px; letter-spacing: 0;">
+                    Check if mission is successful and if so collect the awards
+                </h2>
+            </div>
+            <div *ngIf="mission.isLaunch && mission.isDone && !mission.isAccomplished && mission.isTry">
+                <hr>
+                <h2 style="font-size: 12px; letter-spacing: 0;">
+                    Mission was failed, you lose {{mission.award | currency:'EUR':'symbol-narrow':'1.0-0'}}
+                    and {{mission.experience}}XP   
+                </h2>
+
+                <mat-card-subtitle>Yes, indeed you send; </mat-card-subtitle>
+                <mat-card-subtitle *ngFor="let hero of mission.heroes" style="margin: 0; line-height: 1;">
+                     <span class="eroz-red-color">{{hero.name}}</span> with {{hero.strength}} of strength (STR)
+                </mat-card-subtitle>
+                <mat-card-subtitle style="margin: 10px 0;">So you had only {{(heroesSum(mission.id) / mission.difficulty)*100 | number:'2.2-3'}}% of succeed
+                </mat-card-subtitle>
+                
+            </div>
+            <hr>
+            <countdown [child]="mission"></countdown>
+            <!-- <button (click)="testHeroes()">Check heroes</button> -->
+
+            <!-- OPTION TO VIEW OR HIDE COUNTDOWN -->
+            <!-- <button (click)="removeHide()">view countdown</button>
+            <button (click)="addHide(missionId)">hide countdown</button> -->
+
+            <div *ngIf="!mission.isLaunch">
+                <p class="para_mission">drop here heroes to send</p>
+                <div 
+                    [id]="getHeroesId(mission.id)" 
+                    cdkDropList [cdkDropListData]="mission.heroes"
+                    [cdkDropListConnectedTo]="['LIST_IDS', 'list_of_heroes']" 
+                    (cdkDropListDropped)="onDrop($event)"
+                    class="list_heroes_by_mission">
+                    <div *ngFor="let hero of mission.heroes" cdkDrag>
+                        <button mat-stroked-button color="primary" class="custom_button">{{hero.name}}</button>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="mission.isLaunch && !mission.isAccomplished && !mission.isTry">
+                <h2 style="font-size: 12px; letter-spacing: 0;">HEROES INVOLVED in MISSION
+                    "{{mission.title | titlecase}}"</h2>
+                <ul *ngFor="let hero of mission.heroes">
+                    <li>{{hero.name}}</li>
+                </ul>
+            </div>
+            <div *ngIf="mission.isLaunch && mission.isDone && mission.isAccomplished">
+                <h2 style="font-size: 12px; letter-spacing: 0;" class="eroz-blue-color">great job !!!<br> Mission {{mission.title}} was successful</h2>
+                <!-- <p>Sum of heroes strength: {{heroesSum(mission.id)}}</p> -->
+                <div *ngFor="let hero of mission.heroes">
+                    <mat-card-subtitle>{{hero.name}} received {{mission.experience / mission.heroes.length}} Xp
+                    </mat-card-subtitle>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+</div>

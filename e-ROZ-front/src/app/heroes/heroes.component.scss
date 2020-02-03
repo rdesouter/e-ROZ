@@ -1,0 +1,151 @@
+/* HeroesComponent's private CSS styles */
+.heroes_container{
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  
+}
+
+.heroes {
+    margin: 0 0 2em 0;
+    list-style-type: none;
+    padding: 0;
+    max-width: 100%;
+  }
+  .heroes li {
+    cursor: pointer;
+    position: relative;
+    left: 0;
+    background-color: rgb(240, 240, 250);
+    margin: 1em 0em;
+    padding: .3em 0;
+    height: 2.25em;
+    border-radius: 4px;
+    color: rgb(25, 143, 215);
+    font-weight: 400;
+    transition: all ease-in-out 220ms;
+    
+  }
+  .heroes li:hover {
+    color: #d9d9d9;
+    background-color: #333;
+    left: 10px;
+    transition: all ease-in-out 150ms;
+  }
+  .heroes li.selected {
+    background-color: #CFD8DC;
+    color: white;
+  }
+  .heroes li.selected:hover {
+    background-color: #BBD8DC;
+    color: white;
+  }
+  .heroes .badge {
+    display: inline-block;
+    font-size: 1em;
+    color: white;
+    padding: 2px 15px 11px 15px;
+    background-color: #727272;
+    line-height: 1em;
+    position: relative;
+    left: -1px;
+    top: -5px;
+    height: 33px;
+    margin-right: 0.5em;
+    border-radius: 4px 0 0 4px;
+  }
+
+  .heroes .badge_status{
+    display: inline-block;
+    font-size: small;
+    color: white;
+    padding: 1.2em 1em 0 1em;
+    background-color:#2687da;
+    position: relative;
+    right: 0px;
+    top: -4px;
+    height: 2.25em;
+    border-radius: 0 4px 4px 0;
+    float: right;  
+  }
+
+.cost{
+  font-size: 12px;
+  color: #727272;
+}
+.list {
+  margin: 0 10px 20px 0;
+  border: RGBA(20, 143, 215, 0.7) solid 1px;
+  border-radius: 5px;
+  background-color: rgba(25, 25, 25, 0.62);
+  padding: 0em 1em;
+  box-shadow: 
+    0 1px 6px -4px rgba(0, 0, 0, 0.7),
+    0 2px 8px -4px rgba(0, 0, 0, 0.8),
+    0 0px 20px 2px rgba(0, 0, 0, 1);
+}
+
+  ::ng-deep .mat-form-field-empty.mat-form-field-label {
+    color: rgba(38, 135, 218, 0.7);
+  }
+
+  ::placeholder{
+    color: rgba(255, 255, 255, $alpha: 0.7);
+  }
+
+  //drag and drop ani:ation style
+  .cdk-drag-preview {
+    box-sizing: border-box;
+    background-color: rgba($color: #333, $alpha: 0.5);
+    color: white;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14),
+    0 3px 14px 2px rgba(0, 0, 0, 0.12);
+  }
+  
+  .cdk-drag-placeholder {
+    opacity: 0;
+  }
+  
+  .cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+
+  // mat expand panel
+mat-expansion-panel{
+    margin: 0 10px 20px 0;
+    border: rgba(20, 143, 215, 0.7) solid 1px;
+    color: rgba(20, 143, 215, 0.7)!important;
+    background-color: rgba(25, 25, 25, 0.62);
+    box-shadow: 
+      0 1px 6px -4px rgba(0, 0, 0, 0.7),
+      0 2px 8px -4px rgba(0, 0, 0, 0.8),
+      0 0px 20px 2px rgba(0, 0, 0, 1);
+}
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-label {
+  color: white;
+}
+
+mat-panel-title {
+  color: rgba(20, 143, 215, $alpha: 1);
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+mat-panel-description{
+  color: rgba(255, 255, 255, $alpha: 0.5);
+  text-transform: uppercase;
+  font-size: 10px;
+}
+
+::ng-deep .mat-expansion-indicator::after{
+  color: rgba(20, 143, 215, $alpha: 1);
+}
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-underline {
+  background-color: rgba(255, 255, 255, 0.42);
+}
+
+
+  

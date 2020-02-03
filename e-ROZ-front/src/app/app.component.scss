@@ -1,0 +1,14 @@
+
+  // custom mat dialog 
+  ::ng-deep .mat-dialog-container {
+    box-shadow: 
+      0 11px 15px -7px rgba(20, 144, 216, 0.5), 
+      0 24px 38px 3px rgba(20, 120, 200, 0.25), 
+      0 9px 46px 8px rgba(25, 144, 210, 0.38);
+    background: #252525;
+    color: rgba(0,0,0,.87);
+    border: 1px solid rgb(20, 144, 216);
+    padding: 0.5em 4em 3em!important;
+  }
+
+  
